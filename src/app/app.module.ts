@@ -6,6 +6,7 @@ import { RouterOutlet } from "@angular/router";
 import { AppRoutingModule } from './app-routing.module';
 import { DashboardModule } from './modules/dashboard/dashboard.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     RouterOutlet,
     AppRoutingModule,
     DashboardModule,
+    MatIconModule,
     BrowserAnimationsModule
 ],
   providers: [],

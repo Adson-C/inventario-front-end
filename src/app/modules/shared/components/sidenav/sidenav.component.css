@@ -50,3 +50,73 @@ div ul {
     margin-right: 7px;
     vertical-align: middle;
 }
+.mat-icon.mat-primary {
+    --mat-icon-color: #00dcd1;
+    height: 23px !important;
+    width: 23px !important;
+    overflow: auto !important;
+    font-size: 23px;
+    animation: bounceY var(--dur, 2.6s) cubic-bezier(.28,.84,.42,1) infinite;
+}
+@keyframes bounceY {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-4px);
+    }
+}
+.mat-icon.mat-accent {
+    --mat-icon-color: #d39728;
+    height: 20px !important;
+    width: 20px !important;
+    overflow: auto !important;
+    font-size: 20px;
+}
+.mat-icon.mat-warn {
+    --mat-icon-color: #0cb8ec;
+    height: 23px !important;
+    width: 23px !important;
+    overflow: auto !important;
+    font-size: 23px;
+    animation: stepColor var(--dur, 9.9s) steps(4, end) infinite;
+}
+
+@keyframes stepColor {
+  0%   { color: #ebdd19; }
+  33%  { color: #d400ff; }
+  66%  { color: #4caf50; }
+  100% { color: #1037e7; }
+}
+
+.mat-icon.mat-success {
+    --mat-icon-color: #198754;
+    height: 20px !important;
+    width: 20px !important;
+    overflow: auto !important;
+    font-size: 20px;
+    animation: circle 4s infinite;
+}
+@keyframes circle {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.mat-icon.mat-warning {
+    --mat-icon-color: #ffc107;
+    height: 20px !important;
+    width: 20px !important;
+    overflow: auto !important;
+    font-size: 20px;
+}
+.mat-icon.mat-secondary {
+    --mat-icon-color: #6c757d;
+    height: 20px !important;
+    width: 20px !important;
+    overflow: auto !important;
+    font-size: 20px;
+}

@@ -1,0 +1,24 @@
+<h2 mat-dialog-title>{{estadoFormulario}}  Categoria</h2>
+<mat-dialog-content>
+    <form [formGroup]="categoryForm" class="category-form">
+        <div class="category-container">
+            <mat-form-field>
+                <input matInput placeholder="Nome" formControlName="name" required />
+            </mat-form-field>
+
+            <mat-form-field>
+                <textarea matInput placeholder="Descrição" formControlName="description" required></textarea>
+            </mat-form-field>
+        </div>
+        
+    </form>
+</mat-dialog-content>
+
+<mat-dialog-actions class="category-actions">
+    <button mat-button (click)="onSave()" [disabled]="categoryForm.invalid">
+        <mat-icon color="success">save</mat-icon>Salvar
+    </button> 
+    <button mat-button (click)="onCancel()">
+        <mat-icon color="warn">cancel</mat-icon>Cancelar
+    </button>
+</mat-dialog-actions>

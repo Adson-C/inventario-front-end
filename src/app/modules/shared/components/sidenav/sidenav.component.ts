@@ -13,7 +13,7 @@ export class SidenavComponent implements OnInit {
   menuNav = [
     {name: "Home", route: "home", icon: "home"},
     {name: "Categorias", route: "category", icon: "category"},
-    {name: "Produtos", route: "product", icon: "production_quantity_limits"},
+    {name: "Produtos", route: "home", icon: "production_quantity_limits"},
   ]
 
 constructor(media: MediaMatcher) {
