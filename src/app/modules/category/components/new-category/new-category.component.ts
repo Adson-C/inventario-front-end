@@ -10,7 +10,6 @@ import { CategoryService } from 'src/app/modules/shared/services/category.servic
 })
 export class NewCategoryComponent implements OnInit {
 
-  
   public categoryForm!: FormGroup;
   estadoFormulario: string = "";
   private fb = inject(FormBuilder);

@@ -18,4 +18,13 @@ export class ProductService {
     const endpoint = `${API_URL}/products`;
     return this.http.get(endpoint);
   }
+   /**
+     * Salva um novo Produto
+     * @param product Dados do produto a ser salvo
+     * @returns Produto salvo
+     */
+    saveProduct(product: any){
+      const endpoint = `${API_URL}/products`;
+      return this.http.post(endpoint, product);
+    }
 }
