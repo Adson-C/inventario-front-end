@@ -115,6 +115,14 @@ edit(id:number, name:string, price:number, account:number, category:any, enterAn
 
     });
 }
+buscar(termino: string) {
+      if (termino) {
+          const filterValue = termino.trim().toLowerCase();
+          this.dataSource.filter = filterValue;
+      } else {
+          this.dataSource.filter = '';
+      }
+  }
 }
 export interface ProductElement {
   id: number;

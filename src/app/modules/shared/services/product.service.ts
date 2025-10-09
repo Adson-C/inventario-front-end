@@ -50,4 +50,14 @@ export class ProductService {
     console.log('Service - Deletando produto. Endpoint:', endpoint);
     return this.http.delete(endpoint);
   }
+  /**
+   * Buscar product
+   * @param id ID da product
+   * @returns Product encontrada
+   */
+  getProductById(id: any){
+    const endpoint = `${API_URL}/products/${id}`;
+    console.log('Service - Buscando produto. Endpoint:', endpoint);
+    return this.http.get(endpoint);
+  }
 }
