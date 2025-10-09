@@ -5,6 +5,7 @@ import { ProductService } from './../../shared/services/product.service';
 import { NewProductComponent } from '../new-product/new-product.component';
 import { MatSnackBar, MatSnackBarRef, SimpleSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
+import { ConfirmComponent } from '../../shared/components/confirm/confirm.component';
 
 @Component({
   selector: 'app-product',
@@ -78,8 +79,23 @@ export class ProductComponent implements OnInit, AfterViewInit {
         duration: 3000,
       });
     }
-  delete(arg0: any,arg1: string,arg2: string) {
-throw new Error('Method not implemented.');
+  delete(id: number, enterAnimationDuration: string = '0ms', exitAnimationDuration: string = '0ms') {
+     const dialogRef = this.dialog.open(ConfirmComponent, {
+      width: '350px',
+      data: {id: id, module: 'product'},
+      enterAnimationDuration,
+      exitAnimationDuration,
+    });
+
+    dialogRef.afterClosed().subscribe((result: any) => {
+      if ( result == 1){
+        this.openSnackBar('Produto deletado com sucesso!', 'OK');
+        this.getProducts();
+      } else if (result == 2) {
+        this.openSnackBar('Erro ao deletar produto.', 'Error');
+      }
+
+    });
 }
 edit(id:number, name:string, price:number, account:number, category:any, enterAnimationDuration: string = '0ms', exitAnimationDuration: string = '0ms') {
   const dialogRef = this.dialog.open(NewProductComponent, {

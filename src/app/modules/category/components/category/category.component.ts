@@ -107,10 +107,10 @@ export class CategoryComponent implements OnInit, AfterViewInit {
 
     });
   }
-  openDeleteDialog(id: number, enterAnimationDuration: string = '0ms', exitAnimationDuration: string = '0ms') {
+  delete(id: number, enterAnimationDuration: string = '0ms', exitAnimationDuration: string = '0ms') {
     const dialogRef = this.dialog.open(ConfirmComponent, {
       width: '450px',
-      data: { id: id },
+      data: { id: id,  module: 'category' },
       enterAnimationDuration,
       exitAnimationDuration,
     });

@@ -39,4 +39,15 @@ export class ProductService {
     console.log('Service - Atualizando produto. Endpoint:', endpoint, 'Dados:', product);
     return this.http.put(endpoint, product);
   }
+   /**
+   * Update product
+   * @param product Dados do produto a ser atualizado
+   * @param id ID do produto
+   * @returns Produto atualizado
+   */
+  deleteProduct(id: number | string){
+    const endpoint = `${API_URL}/products/${id}`;
+    console.log('Service - Deletando produto. Endpoint:', endpoint);
+    return this.http.delete(endpoint);
+  }
 }
