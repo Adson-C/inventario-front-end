@@ -12,7 +12,6 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./product.component.css']
 })
 export class ProductComponent implements OnInit, AfterViewInit {
-
   private productService = inject(ProductService);
   private snackBar = inject(MatSnackBar);
     public dialog = inject(MatDialog);
@@ -48,7 +47,7 @@ export class ProductComponent implements OnInit, AfterViewInit {
     if(resp && resp.metadata && resp.metadata[0] && resp.metadata[0].code == "00"){
       let listProduct = resp.productResponse.products;
       listProduct.forEach((element: ProductElement) => {
-        element.category = element.category ? element.category.name : '';
+        // element.category = element.category ? element.category.name : '';
         element.picture = 'data:image/jpeg;base64,' + element.picture;
         dataProduct.push(element);
       });
@@ -79,6 +78,27 @@ export class ProductComponent implements OnInit, AfterViewInit {
         duration: 3000,
       });
     }
+  delete(arg0: any,arg1: string,arg2: string) {
+throw new Error('Method not implemented.');
+}
+edit(id:number, name:string, price:number, account:number, category:any, enterAnimationDuration: string = '0ms', exitAnimationDuration: string = '0ms') {
+  const dialogRef = this.dialog.open(NewProductComponent, {
+      width: '350px',
+      data: {id: id, name: name, price: price, account: account, category: category},
+      enterAnimationDuration,
+      exitAnimationDuration,
+    });
+
+    dialogRef.afterClosed().subscribe((result: any) => {
+      if ( result == 1){
+        this.openSnackBar('Produto editado com sucesso!', 'OK');
+        this.getProducts();
+      } else if (result == 2) {
+        this.openSnackBar('Erro ao editar produto.', 'Error');
+      }
+
+    });
+}
 }
 export interface ProductElement {
   id: number;

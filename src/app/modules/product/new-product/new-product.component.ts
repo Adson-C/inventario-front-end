@@ -38,6 +38,11 @@ export class NewProductComponent implements OnInit {
       });
       this.estadoFormulario = "Criar";
       this.getCategories();
+      
+      if (this.data != null && this.data != undefined) {
+        this.populateProductForm(this.data);
+        this.estadoFormulario = "Atualizar";
+      }
     }
     
 onCancel() {
@@ -74,20 +79,36 @@ onCancel() {
     uploadImageData.append('account', data.account);
     uploadImageData.append('categoryId', data.category);
 
-    // call the service to save the product
-    this.productService.saveProduct(uploadImageData)
-    .subscribe((data: any) => {
-      console.log('Produto salvo com sucesso:', data);
-      this.dialogRef.close(1);
-    }, (error: any) => {
-      console.error('Erro ao salvar produto:', error);
-      console.error('Status:', error.status);
-      console.error('Mensagem:', error.message);
-      if (error.error && error.error.message) {
-        console.error('Erro do servidor:', error.error.message);
-      }
-      this.dialogRef.close(2);
-    });
+    if (this.data != null) {
+       // sair da função após a atualização
+       this.productService.updateProduct(uploadImageData, this.data.id)
+          .subscribe((data: any) => {
+              console.log('Produto salvo com sucesso:', data);
+              this.dialogRef.close(1);
+            }, (error: any) => {
+              console.error('Erro ao salvar produto:', error);
+              console.error('Status:', error.status);
+              console.error('Mensagem:', error.message);
+              if (error.error && error.error.message) {
+                console.error('Erro do servidor:', error.error.message);
+              }
+              this.dialogRef.close(2);
+            });
+    } else {
+      this.productService.saveProduct(uploadImageData)
+        .subscribe((data: any) => {
+          console.log('Produto salvo com sucesso:', data);
+          this.dialogRef.close(1);
+        }, (error: any) => {
+          console.error('Erro ao salvar produto:', error);
+          console.error('Status:', error.status);
+          console.error('Mensagem:', error.message);
+          if (error.error && error.error.message) {
+            console.error('Erro do servidor:', error.error.message);
+          }
+          this.dialogRef.close(2);
+        });
+    }
   }
 
   getCategories() {
@@ -112,6 +133,20 @@ onCancel() {
       console.error('Erro ao obter categorias:', error);
       this.categories = [];
     });
+  }
+
+  private populateProductForm(data: any) {
+    if (data && data.name && data.price && data.account && data.category) {
+      this.productForm.patchValue({
+        name: data.name,
+        price: data.price,
+        account: data.account,
+        category: data.category.id // Assuming category is an object with an id property
+      });
+      this.nameImg = data.picture; // Assuming picture is a URL or base64 string
+    } else {
+      console.error('Dados inválidos para atualizar o formulário:', data);
+    }
   }
   onFileChange(event: any) {
     this.selectedFile = event.target.files[0];

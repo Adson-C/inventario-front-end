@@ -27,4 +27,16 @@ export class ProductService {
       const endpoint = `${API_URL}/products`;
       return this.http.post(endpoint, product);
     }
+
+    /**
+   * Update categoria
+   * @param product Dados da categoria a ser atualizada
+   * @param id ID da categoria
+   * @returns Categoria atualizada
+   */
+  updateProduct(product: any, id: number | string){
+    const endpoint = `${API_URL}/products/${id}`;
+    console.log('Service - Atualizando produto. Endpoint:', endpoint, 'Dados:', product);
+    return this.http.put(endpoint, product);
+  }
 }
