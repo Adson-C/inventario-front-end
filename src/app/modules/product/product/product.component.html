@@ -61,10 +61,10 @@
             <ng-container matColumnDef="actions">
                 <th mat-header-cell *matHeaderCellDef> Ações </th>
                 <td mat-cell *matCellDef="let element; let i = index;">
-                    <button mat-icon-button (click)="edit(element.id, element.name, element.price, element.account, element.category, '1000ms', '500ms')">
+                    <button  mat-icon-button (click)="edit(element.id, element.name, element.price, element.account, element.category, '1000ms', '500ms')">
                         <mat-icon color="success" aria-label="edit">edit</mat-icon>
                     </button>
-                    <button matButton="elevated" (click)="delete(element.id, '1000ms', '500ms')">
+                    <button *ngIf="isAdmin" matButton="elevated" (click)="delete(element.id, '1000ms', '500ms')">
                         <mat-icon color="warn" aria-label="delete">delete</mat-icon>
                     </button>
                 </td>
