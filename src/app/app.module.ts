@@ -8,6 +8,7 @@ import { DashboardModule } from './modules/dashboard/dashboard.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIconModule } from '@angular/material/icon';
 import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
+import { NgChartsModule } from 'ng2-charts';
 
 function initializeKeycloak(keycloak: KeycloakService) {
   return () =>
@@ -39,7 +40,8 @@ function initializeKeycloak(keycloak: KeycloakService) {
     DashboardModule,
     MatIconModule,
     BrowserAnimationsModule,
-    KeycloakAngularModule
+    KeycloakAngularModule,
+    NgChartsModule
 ],
   providers: [
     {
