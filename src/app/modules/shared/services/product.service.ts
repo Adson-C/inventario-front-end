@@ -60,4 +60,14 @@ export class ProductService {
     console.log('Service - Buscando produto. Endpoint:', endpoint);
     return this.http.get(endpoint);
   }
+  /**
+   * Exporta a lista de products
+   */
+  exportProducts(){
+    const endpoint = `${API_URL}/products/export/excel`;
+    return this.http.get(endpoint,{
+      responseType: 'blob'
+    });
+  }
+
 }

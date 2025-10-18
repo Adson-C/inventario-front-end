@@ -87,6 +87,26 @@ export class ProductComponent implements OnInit, AfterViewInit {
         duration: 3000,
       });
     }
+
+  // export execel
+  exportExcel(){
+    this.productService.exportProducts()
+      .subscribe((data: any) => {
+        let file = new Blob([data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+        let fileUrl = window.URL.createObjectURL(file);
+        var anchor = document.createElement('a');
+        anchor.download = 'produtos.xlsx';
+        anchor.href = fileUrl;
+        anchor.click();
+
+        this.openSnackBar('Produtos exportados com sucesso!', 'OK');
+        // window.URL.revokeObjectURL(fileUrl);
+      }, (error: any) => {
+        console.error("Erro ao exportar produtos", error);
+        this.openSnackBar('Erro ao exportar produtos.', 'Error');
+      });
+  }
+
   delete(id: number, enterAnimationDuration: string = '0ms', exitAnimationDuration: string = '0ms') {
      const dialogRef = this.dialog.open(ConfirmComponent, {
       width: '350px',

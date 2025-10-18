@@ -60,5 +60,14 @@ export class CategoryService {
     console.log('Service - Buscando categoria. Endpoint:', endpoint);
     return this.http.get(endpoint);
   }
+  /**
+   * Exporta a lista de categorias
+   */
+  exportCategories(){
+    const endpoint = `${API_URL}/categories/export/excel`;
+    return this.http.get(endpoint,{
+      responseType: 'blob'
+    });
+  }
 
 }
